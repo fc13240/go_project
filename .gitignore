@@ -1,0 +1,8 @@
+/.vscode
+/share/
+bin/
+pkg/
+src/photoweb/upload/
+/test/
+*.exe
+*.a
