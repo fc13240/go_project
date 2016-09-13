@@ -15,8 +15,9 @@ import (
 	"time"
 )
 
-var dirCurrent, _ = filepath.Split(os.Args[0])
-var dirSave = "e:/test/typhoon/"
+var dirCurrent = filepath.Dir(os.Args[0])
+
+var dirSave = filepath.Join(dirCurrent, "data")
 
 var urlTyhoon = "http://typhoon.nmc.cn/weatherservice/typhoon/jsons/"
 
@@ -105,10 +106,14 @@ func getTyphoonList() {
 func getTyphoonDetail(year, code string) {
 	fileName := "view_" + code
 	fetch(urlTyhoon+fileName, func(content string) {
-		saveFile(filepath.Join(year, fileName), content)
+		// fileName := filepath.Join(year, fileName)
+		saveFile(fileName, content)
 	})
 }
 func main() {
-	fmt.Print(dirCurrent)
+	if len(os.Args) > 1 {
+		dirSave = os.Args[1]
+	}
+	fmt.Printf("dirCurrent = %s, dirSave = %s\n", dirCurrent, dirSave)
 	getTyphoonList()
 }
