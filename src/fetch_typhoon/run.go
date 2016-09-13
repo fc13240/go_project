@@ -87,7 +87,7 @@ func getTyphoonList() {
 	for i := time.Now().Year(); i >= 1949; i-- {
 		year := strconv.Itoa(i)
 		fileName := "list_" + year
-		fetch(urlTyhoon+fileName, func(content string) {
+		fetch(urlTyhoon+fileName+"?"+strconv.Itoa(int(time.Now().Unix())), func(content string) {
 			saveFile(fileName, content)
 			var result typhoonList
 			err := json.Unmarshal([]byte(content), &result)
@@ -105,7 +105,7 @@ func getTyphoonList() {
 /*得到单个台风的详细数据*/
 func getTyphoonDetail(year, code string) {
 	fileName := "view_" + code
-	fetch(urlTyhoon+fileName, func(content string) {
+	fetch(urlTyhoon+fileName+"?"+strconv.Itoa(int(time.Now().Unix())), func(content string) {
 		// fileName := filepath.Join(year, fileName)
 		saveFile(fileName, content)
 	})
