@@ -1,9 +1,6 @@
 package test
 
-import (
-	"fmt"
-	"sort"
-)
+import "fmt"
 
 // Reverse a string
 func Reverse(str *string) {
@@ -17,11 +14,7 @@ func reverseString(s string) string {
 		runes[from], runes[to] = runes[to], runes[from]
 	}
 	fmt.Println(runes)
-	return string(runes)
-}
 
-func reverseString1(s string) string {
-	runes := []rune(s)
-	sort.Reverse(runes)
+	Log("method from log.go in string.go")
 	return string(runes)
 }
